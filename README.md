@@ -12,8 +12,8 @@ Optionally (necessary for some of the experiments) install `tensorflow_datasets=
 To clone this project and install it, run
 
 ```
-git clone git@github.com:ratschlab/projects-2020-Neural-SVGD.git
-cd projects-2020-Neural-SVGD
+git clone git@github.com:langosco/neural-variational-gradient-descent.git
+cd neural-variational-gradient-descent
 pip install -e .
 ```
 
