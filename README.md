@@ -9,7 +9,7 @@ See the [installation instructions](https://github.com/google/jax#installation) 
 
 Optionally (necessary for some of the experiments) install `tensorflow_datasets==4.2.0` and tensorflow 2.0.
 
-To clone this project and install it, run
+To clone this project and install it, first install JAX according to the instructions linked above. Then run
 
 ```
 git clone git@github.com:langosco/neural-variational-gradient-descent.git
