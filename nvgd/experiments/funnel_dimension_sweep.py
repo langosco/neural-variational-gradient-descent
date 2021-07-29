@@ -17,7 +17,6 @@ parser.add_argument('--debug', action='store_true')
 args = parser.parse_args()
 
 key = random.PRNGKey(args.seed)
-on_cluster = not os.getenv("HOME") == "/home/lauro"
 
 # Config
 NUM_STEPS = 500  # 500
@@ -56,7 +55,7 @@ def sample(d, key, n_particles):
 
 print("SWEEPING DIMENSIONS...")
 mmd_sweep = []
-for d in tqdm(range(2, MAX_DIM), disable=on_cluster):
+for d in tqdm(range(2, MAX_DIM)):
     key, subkey = random.split(key)
     particles, gradients = sample(d, subkey, NUM_PARTICLES)
 

@@ -10,11 +10,10 @@ import config as cfg
 import pandas as pd
 
 data = dataloader.data
-on_cluster = not os.getenv("HOME") == "/home/lauro"
 
 # Config
 # date = datetime.today().strftime('%a-%H:%M-%f')
-DISABLE_PROGRESS_BAR = on_cluster
+DISABLE_PROGRESS_BAR = True
 LAMBDA_REG = 10**2
 
 
@@ -73,7 +72,7 @@ def train(key,
                        "max_train_steps,step,accuracy\n")
 
     print("Training...")
-    for step_counter in tqdm(range(n_iter), disable=on_cluster):
+    for step_counter in tqdm(range(n_iter), disable=DISABLE_PROGRESS_BAR):
         train_batch = next(data.train_batches)
         particles.step(train_batch)
 

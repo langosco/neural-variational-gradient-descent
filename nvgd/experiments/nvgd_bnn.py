@@ -10,7 +10,6 @@ from nvgd.experiments import bnn, dataloader
 from nvgd.experiments import config as cfg
 
 data = dataloader.data
-on_cluster = not os.getenv("HOME") == "/home/lauro"
 
 # Config
 # date = datetime.today().strftime('%a-%H:%M-%f')
@@ -21,7 +20,8 @@ DEFAULT_PATIENCE = 5  # early stopping not v helpful, bc we overfit on all ps
                       # TODO: see what follows when I remove this assumption
 
 LAMBDA_REG = 1/2
-DEFAULT_LAYER_SIZE = 256 if on_cluster else 32
+DEFAULT_LAYER_SIZE = 256
+DISABLE_PROGRESS_BAR = True
 
 
 def train(key,
@@ -123,7 +123,7 @@ def train(key,
             file.write("step_counter,accuracy,loglikelihood\n")
 
     print("Training...")
-    for step_counter in tqdm(range(n_iter), disable=on_cluster):
+    for step_counter in tqdm(range(n_iter), disable=DISABLE_PROGRESS_BAR):
         key, subkey = random.split(key)
         train_batch = next(data.train_batches)
         n_train_particles = 3*n_samples // 4 if early_stopping else n_samples - 1

@@ -14,12 +14,11 @@ import bnn
 
 data = dataloader.data
 NUM_CLASSES = 10
-on_cluster = not os.getenv("HOME") == "/home/lauro"
 
 # Config
 key = random.PRNGKey(0)
 LEARNING_RATE = 1e-7
-DISABLE_PROGRESS_BAR = on_cluster
+DISABLE_PROGRESS_BAR = True
 
 
 def train(key,
