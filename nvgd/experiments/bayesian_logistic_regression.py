@@ -26,17 +26,13 @@ args = parser.parse_args()
 
 print(f"Using seed {args.seed}")
 
-on_cluster = not os.getenv("HOME") == "/home/lauro"
-disable_tqdm = on_cluster
+disable_tqdm = True
 key = random.PRNGKey(args.seed)
 a0, b0 = 1, 0.01  # hyper-parameters
 batch_size = 128
 
 print("Loading Covertype dataset")
-if on_cluster:
-    data_path = '/cluster/home/dlauro/Stein-Variational-Gradient-Descent/data/covertype.mat'
-else:
-    data_path = '/home/lauro/code/msc-thesis/wang_svgd/data/covertype.mat'
+data_path = "./data/covertype.mat"
 data = scipy.io.loadmat(data_path)
 features = data['covtype'][:, 1:]
 features = onp.hstack([features, onp.ones([features.shape[0], 1])])  # add intercept term
